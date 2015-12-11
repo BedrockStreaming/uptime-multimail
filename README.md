@@ -10,7 +10,7 @@ Installing
 To install, clone the repository on your `plugin` directory:
 
 ```sh
-$ git clone git://github.com/acoquoin/uptime-multimail.git hipchat
+$ git clone git://github.com/acoquoin/uptime-multimail.git multimail
 ```
 
 Install dependencies using `npm`:
