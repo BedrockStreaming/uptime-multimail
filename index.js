@@ -56,7 +56,7 @@ var CheckEvent  = require('../../models/checkEvent'),
 
 exports.initWebApp = function(options) {
     var dashboard = options.dashboard,
-        config    = options.config.email,
+        config    = options.config.multimail,
         mailer    = nodemailer.createTransport(config.method, config.transport);
     dashboard.on('populateFromDirtyCheck', function(checkDocument, dirtyCheck, type) {
         checkDocument.setPollerParam('multimail', dirtyCheck.multimail.split(/,|;|\/|\|/gi).map(function(email) {
@@ -79,15 +79,12 @@ exports.initWebApp = function(options) {
                 var message = ejs.render(fs.readFileSync(__dirname + '/views/email.ejs', 'utf8'), {
                     check: check,
                     checkEvent: checkEvent,
-                    url: options.config.url,
+                    url: config.url || options.config.url,
                     moment: moment
                 }).split('\n');
                 var from = config.from.split(/(.*)\s<(.*@.*\..*)>/gi);
                 var mailOptions = {
-                    from:    {
-                      name: from[0],
-                      adress: from[1]
-                    },
+                    from:    config.from,
                     to:      check.pollerParams.multimail,
                     subject: message.shift(),
                     text:    message.join('\n')
