@@ -34,7 +34,7 @@ And append the configuration:
 
 ```yaml
 multimail:
-    method:       SMTP
+    method:       SMTP # possible methods are SMTP, SES, or Sendmail
     transport:    # see https://github.com/andris9/Nodemailer/tree/0.7 for transport options
         auth:
             user: foobar@gmail.com
