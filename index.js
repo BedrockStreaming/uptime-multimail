@@ -82,7 +82,7 @@ exports.initWebApp = function(options) {
                     url: options.config.url,
                     moment: moment
                 }).split('\n');
-                var from = config.form.split(/(.*)\s<(.*@.*\..*)>/gi);
+                var from = config.from.split(/(.*)\s<(.*@.*\..*)>/gi);
                 var mailOptions = {
                     from:    {
                       name: from[0],
