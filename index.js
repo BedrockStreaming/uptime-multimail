@@ -82,8 +82,12 @@ exports.initWebApp = function(options) {
                     url: options.config.url,
                     moment: moment
                 }).split('\n');
+                var from = config.form.split(/(.*)\s<(.*@.*\..*)>/gi);
                 var mailOptions = {
-                    from:    config.from,
+                    from:    {
+                      name: from[0],
+                      adress: from[1]
+                    },
                     to:      check.pollerParams.multimail,
                     subject: message.shift(),
                     text:    message.join('\n')
